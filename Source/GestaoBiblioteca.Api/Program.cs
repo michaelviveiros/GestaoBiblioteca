@@ -39,6 +39,7 @@ SqlServerConfiguration.ConfigureServices(builder.Services, builder.Configuration
 #endregion
 
 builder.Services.AddScoped<IAutorService, AutorService>();
+builder.Services.AddScoped<IGeneroService, GeneroService>();
 
 
 var app = builder.Build();
