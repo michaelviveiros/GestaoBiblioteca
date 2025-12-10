@@ -6,11 +6,24 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>0c4ab54a-6c32-41b5-8809-20f2d6a215a3</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+
+	  <!-- HABILITAR A DOCUMENTAÇÃO XML -->
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  <NoWarn>$(NoWarn);1591</NoWarn>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="13.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.22" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.22.1" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GestaoBiblioteca.Core\GestaoBiblioteca.Core.csproj" />
+    <ProjectReference Include="..\GestaoBiblioteca.Service\GestaoBiblioteca.Service.csproj" />
   </ItemGroup>
 
 </Project>
