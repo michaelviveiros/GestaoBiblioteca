@@ -27,11 +27,36 @@ namespace GestaoBiblioteca.Service
             _mapper = mapper;
         }
 
-        public async Task<GeneroDTO> BuscarPorId(int id)
+        public async Task<GeneroDTO> BuscarPorIdAsync(int id)
         {
             try
             {
                 var genero = await _context.Generos.Where(x => x.Id == id).FirstOrDefaultAsync();
+
+                if (genero == null)
+                    return null;
+
+                var generoDTO = _mapper.Map<GeneroDTO>(genero);
+
+                return generoDTO;
+            }
+
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public GeneroDTO BuscarPorId(int id)
+        {
+            try
+            {
+                var genero = _context.Generos.Where(x => x.Id == id).FirstOrDefault();
 
                 if (genero == null)
                     return null;
@@ -57,15 +82,17 @@ namespace GestaoBiblioteca.Service
             try
             {
                 if(entidades == null || !entidades.Any())
-                    return;
+                    throw new KeyNotFoundException($"É necessário informar um ou mais registros para posterior associação de livros.");
 
-                var livros = _context.Livros.AsNoTracking().ToListAsync();
+                var livros = _context.Livros.AsNoTracking().ToList();
 
                 foreach (var item in entidades)
                 {
-                    var livrosGenero = livros.Result.Where(x => x.IdGenero == item.Id).ToList();
+                    var livrosGenero = livros.Where(x => x.IdGenero == item.Id).ToList();
 
-                    if (livrosGenero.Any())
+                    if (!livrosGenero.Any())
+                        continue;
+                    else
                         item.Livros = _mapper.Map<ICollection<LivroDTO>>(livrosGenero);
                 }
             }
@@ -178,11 +205,33 @@ namespace GestaoBiblioteca.Service
             }
         }
 
-        public async override Task<List<GeneroDTO>> ListarTodos()
+        public async override Task<List<GeneroDTO>> ListarTodosAsync()
         {
             try
             {
                 var generos = await _context.Autores.AsNoTracking().ToListAsync();
+
+                var generosDTO = _mapper.Map<List<GeneroDTO>>(generos);
+
+                return generosDTO.OrderBy(x => x.Nome).ToList();
+            }
+
+            catch (SqlException ex)
+            {
+                throw;
+            }
+
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public override List<GeneroDTO> ListarTodos()
+        {
+            try
+            {
+                var generos = _context.Autores.AsNoTracking().ToList();
 
                 var generosDTO = _mapper.Map<List<GeneroDTO>>(generos);
 

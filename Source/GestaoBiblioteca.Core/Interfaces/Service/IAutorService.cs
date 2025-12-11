@@ -10,6 +10,10 @@ namespace GestaoBiblioteca.Core.Interfaces.Service
 {
     public interface IAutorService : IBaseRepository<AutorDTO>
     {
-        Task<AutorDTO> BuscarPorId(int id);
+        Task<AutorDTO> BuscarPorIdAsync(int id);
+
+        AutorDTO BuscarPorId(int id);
+
+        void CorrelacionarLivros(ref IEnumerable<AutorDTO> entidades);
     }
 }

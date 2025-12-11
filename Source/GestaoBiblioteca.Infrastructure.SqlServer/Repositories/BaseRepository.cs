@@ -17,6 +17,8 @@ namespace GestaoBiblioteca.Infrastructure.SqlServer.Repositories
 
         public abstract Task<bool> Incluir(T entity);
 
-        public abstract Task<List<T>> ListarTodos();
+        public abstract Task<List<T>> ListarTodosAsync();
+
+        public abstract List<T> ListarTodos();
     }
 }

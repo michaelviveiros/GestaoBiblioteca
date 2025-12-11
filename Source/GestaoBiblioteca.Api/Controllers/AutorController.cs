@@ -30,7 +30,7 @@ namespace GestaoBiblioteca.Api.Controllers
                     return BadRequest(new ResultResponse<string>
                         (data: $"O valor ({id}) para o campo de Id é inválido."));
 
-                var resultado = await _autorService.BuscarPorId(id);
+                var resultado = await _autorService.BuscarPorIdAsync(id);
 
                 if (resultado == null)
                     return NotFound(new ResultResponse<string>
@@ -211,7 +211,7 @@ namespace GestaoBiblioteca.Api.Controllers
         {
             try
             {
-                var resultado = await _autorService.ListarTodos();
+                var resultado = await _autorService.ListarTodosAsync();
 
                 if (resultado == null || !resultado.Any())
                     return NotFound(new ResultResponse<string>(

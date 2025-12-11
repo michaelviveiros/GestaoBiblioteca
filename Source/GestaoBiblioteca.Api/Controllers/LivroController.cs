@@ -212,7 +212,7 @@ namespace GestaoBiblioteca.Api.Controllers
         {
             try
             {
-                var resultado = await _livroService.ListarTodos();
+                var resultado = await _livroService.ListarTodosAsync();
 
                 if (resultado == null || !resultado.Any())
                     return NotFound(new ResultResponse<string>(

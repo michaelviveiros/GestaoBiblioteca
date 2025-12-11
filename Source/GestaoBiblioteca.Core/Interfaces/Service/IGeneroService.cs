@@ -10,7 +10,9 @@ namespace GestaoBiblioteca.Core.Interfaces.Service
 {
     public interface IGeneroService : IBaseRepository<GeneroDTO>
     {
-        Task<GeneroDTO> BuscarPorId(int id);
+        Task<GeneroDTO> BuscarPorIdAsync(int id);
+
+        GeneroDTO BuscarPorId(int id);
 
         void CorrelacionarLivros(ref IEnumerable<GeneroDTO> entidades);
     }

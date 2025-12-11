@@ -16,6 +16,8 @@ namespace GestaoBiblioteca.Core.Interfaces.Repositories
 
         Task<bool> ExcluirPermanentemente(int id);
 
-        Task<List<T>> ListarTodos();
+        Task<List<T>> ListarTodosAsync();
+
+        List<T> ListarTodos();
     }
 }
