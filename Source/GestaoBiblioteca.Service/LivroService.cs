@@ -8,6 +8,7 @@ using GestaoBiblioteca.Infrastructure.SqlServer;
 using GestaoBiblioteca.Infrastructure.SqlServer.Repositories;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,11 +21,13 @@ namespace GestaoBiblioteca.Service
     {
         private readonly AppDbContext _context;
         private readonly IMapper _mapper;
+        private readonly ILogger<LivroService> _logger;
 
-        public LivroService(AppDbContext context, IMapper mapper)
+        public LivroService(AppDbContext context, IMapper mapper, ILogger<LivroService> logger)
         {
             _context = context;
             _mapper = mapper;
+            _logger = logger;
         }
 
         public async Task<ICollection<LivroDTO>> BuscarPorAutor(int idAutor)
@@ -45,11 +48,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o autor do livro sob/código: {idAutor}", idAutor);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o autor do livro sob/código: {idAutor}", idAutor);
                 throw;
             }
         }
@@ -79,11 +84,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao correlacionar autor e gênero para o livro sob/código {LivroId}", entidade.Id);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao correlacionar autor e gênero para o livro sob/código {LivroId}", entidade.Id);
                 throw;
             }
         }
@@ -116,11 +123,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao realizar o correlacionamento das entidades de autor e gênero Entidades {entidades}.", entidades);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao realizar o correlacionamento das entidades de autor e gênero Entidades {entidades}.", entidades);
                 throw;
             }
         }
@@ -141,11 +150,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o genero do livro sob/código: {idGenero}", idGenero);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o genero do livro sob/código: {idGenero}", idGenero);
                 throw;
             }
         }
@@ -166,11 +177,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o livro sob/código: {id}", id);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao buscar o livro sob/código: {id}", id);
                 throw;
             }
         }
@@ -192,11 +205,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao editar o livro sob/nome: {nomeLivro}", entity.Nome);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao editar o livro sob/nome: {nomeLivro}", entity.Nome);
                 throw;
             }
         }
@@ -218,11 +233,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao excluir logicamente o livro sob/código: {id}", id);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao excluir logicamente o livro sob/código: {id}", id);
                 throw;
             }
         }
@@ -242,11 +259,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao excluir permanentemente o livro sob/código: {id}", id);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao excluir permanentemente o livro sob/código: {id}", id);
                 throw;
             }
         }
@@ -263,11 +282,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao incluir o livro sob/nome: {nome}", entity.Nome);
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao incluir o livro sob/nome: {nome}", entity.Nome);
                 throw;
             }
         }
@@ -285,11 +306,13 @@ namespace GestaoBiblioteca.Service
 
             catch (SqlException ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao realizar a listagem dos livros");
                 throw;
             }
 
             catch (Exception ex)
             {
+                _logger.LogError(ex, "Um erro ocorreu ao realizar a listagem dos livros");
                 throw;
             }
         }
