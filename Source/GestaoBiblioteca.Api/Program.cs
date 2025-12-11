@@ -40,6 +40,7 @@ SqlServerConfiguration.ConfigureServices(builder.Services, builder.Configuration
 
 builder.Services.AddScoped<IAutorService, AutorService>();
 builder.Services.AddScoped<IGeneroService, GeneroService>();
+builder.Services.AddScoped<ILivroService, LivroService>();
 
 
 var app = builder.Build();
