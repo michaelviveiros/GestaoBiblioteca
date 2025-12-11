@@ -1,4 +1,5 @@
 ﻿using GestaoBiblioteca.Core.Entities;
+using GestaoBiblioteca.Core.Models.Livro;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -18,9 +19,9 @@ namespace GestaoBiblioteca.Core.Models.Genero
         public string Nome { get; set; }
 
         [Required]
-        public bool Ativo { get; set; }
+        public bool Ativo { get; set; } = true;
 
         [JsonIgnore]
-        public ICollection<TLivros> Livros { get; set; }
+        public ICollection<LivroDTO> Livros { get; set; }
     }
 }

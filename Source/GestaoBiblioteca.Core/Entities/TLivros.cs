@@ -16,9 +16,9 @@ namespace GestaoBiblioteca.Core.Entities
 
 
         //Chaves estrangeiras
-        public int AutorId { get; set; }
+        public int IdAutor { get; set; }
 
-        public int GeneroId { get; set; }
+        public int IdGenero { get; set; }
 
         public TAutores Autor { get; set; }
 

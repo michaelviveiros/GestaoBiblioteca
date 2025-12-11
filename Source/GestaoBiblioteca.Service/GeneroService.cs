@@ -3,6 +3,7 @@ using GestaoBiblioteca.Core.Entities;
 using GestaoBiblioteca.Core.Interfaces.Service;
 using GestaoBiblioteca.Core.Models.Autor;
 using GestaoBiblioteca.Core.Models.Genero;
+using GestaoBiblioteca.Core.Models.Livro;
 using GestaoBiblioteca.Infrastructure.SqlServer;
 using GestaoBiblioteca.Infrastructure.SqlServer.Repositories;
 using Microsoft.Data.SqlClient;
@@ -62,10 +63,10 @@ namespace GestaoBiblioteca.Service
 
                 foreach (var item in entidades)
                 {
-                    var livrosGenero = livros.Result.Where(x => x.GeneroId == item.Id).ToList();
+                    var livrosGenero = livros.Result.Where(x => x.IdGenero == item.Id).ToList();
 
                     if (livrosGenero.Any())
-                        item.Livros = _mapper.Map<ICollection<TLivros>>(livrosGenero);
+                        item.Livros = _mapper.Map<ICollection<LivroDTO>>(livrosGenero);
                 }
             }
 

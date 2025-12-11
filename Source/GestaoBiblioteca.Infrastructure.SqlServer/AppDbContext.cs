@@ -20,13 +20,13 @@ namespace GestaoBiblioteca.Infrastructure.SqlServer
             modelBuilder.Entity<TLivros>()
                 .HasOne(l => l.Autor)
                 .WithMany(a => a.Livros)
-                .HasForeignKey(l => l.AutorId)
+                .HasForeignKey(l => l.IdAutor)
                 .OnDelete(DeleteBehavior.Restrict);
 
             modelBuilder.Entity<TLivros>()
                 .HasOne(l => l.Genero)
                 .WithMany(g => g.Livros)
-                .HasForeignKey(l => l.GeneroId)
+                .HasForeignKey(l => l.IdGenero)
                 .OnDelete(DeleteBehavior.Restrict);
 
             base.OnModelCreating(modelBuilder);
