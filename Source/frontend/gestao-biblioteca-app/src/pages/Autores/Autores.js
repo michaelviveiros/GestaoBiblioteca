@@ -7,7 +7,7 @@ import {
   TextField, FormControlLabel, Switch
 } from "@mui/material";
 
-import { listarAutores, criarAutor, atualizarAutor, deletarAutor } from "../../services/AutorService";
+import { listarAutores, criarAutor, atualizarAutor, excluirAutor } from "../../services/AutorService";
 
 export default function Autores() {
   const [autores, DefinirAutores] = useState([]);
@@ -38,7 +38,7 @@ export default function Autores() {
       if (res.success) DefinirAutores(res.data);
       DefinirCarregamento(false);
     } catch (error) {
-      console.error("Erro na requisição:", error);
+      console.error("Um erro ocorreu ao listar os autpres:", error);
       DefinirCarregamento(false);
     }
   };
@@ -60,13 +60,13 @@ export default function Autores() {
       if (response.success) {
         Swal.fire({
           icon: 'success',
-          title: 'Sucesso!',
+          title: 'Sucesso',
           text: response.data,
         });
       } else {
         Swal.fire({
           icon: 'error',
-          title: 'Erro!',
+          title: 'Erro',
           text: response.errors.join(', '),
         });
       }
@@ -77,7 +77,7 @@ export default function Autores() {
       console.error("Um erro ocorreu ao salvar autor:", error);
       Swal.fire({
         icon: 'error',
-        title: 'Erro!',
+        title: 'Erro',
         text: 'Um erro ocorreu ao salvar o autor.',
       });
     }
@@ -88,19 +88,19 @@ export default function Autores() {
     title: `Deseja realmente excluir o autor "${nome}"?`,
     icon: 'warning',
     showCancelButton: true,
-    confirmButtonText: 'Sim, excluir',
-    cancelButtonText: 'Cancelar'
+    confirmButtonText: 'Sim',
+    cancelButtonText: 'Não'
   });
 
   if (result.isConfirmed) {
     try {
 
-      const response = await deletarAutor(id);
+      const response = await excluirAutor(id);
 
       if (response.success) {
         Swal.fire({
           icon: 'success',
-          title: 'Sucesso!',
+          title: 'Sucesso',
           text: response.data,
         });
 
@@ -109,16 +109,16 @@ export default function Autores() {
       } else {
         Swal.fire({
           icon: 'error',
-          title: 'Erro!',
+          title: 'Erro',
           text: response.errors.join(', '),
         });
       }
     } catch (error) {
-      console.error("Erro ao deletar autor:", error);
+      console.error("Um erro ocorreu ao excluir autor:", error);
       Swal.fire({
         icon: 'error',
-        title: 'Erro!',
-        text: 'Ocorreu um erro ao deletar o autor.',
+        title: 'Erro',
+        text: 'Ocorreu um erro ao excluir o autor.',
       });
     }
   }
@@ -164,7 +164,6 @@ export default function Autores() {
         </Table>
       </TableContainer>
 
-      {/* Modal */}
       <Dialog open={openModal} onClose={FecharModal}>
         <DialogTitle>{modalMode === "criar" ? "Criar Autor" : "Editar Autor"}</DialogTitle>
         <DialogContent>

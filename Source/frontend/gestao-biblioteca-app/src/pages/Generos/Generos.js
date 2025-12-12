@@ -38,7 +38,7 @@ export default function Generos() {
       if (res.success) DefinirGeneros(res.data);
       DefinirCarregamento(false);
     } catch (error) {
-      console.error("Erro ao carregar gêneros:", error);
+      console.error("Erro ao listar os gêneros:", error);
       DefinirCarregamento(false);
     }
   };
@@ -61,13 +61,13 @@ export default function Generos() {
       if (response.success) {
         Swal.fire({
           icon: "success",
-          title: "Sucesso!",
+          title: "Sucesso",
           text: response.data,
         });
       } else {
         Swal.fire({
           icon: "error",
-          title: "Erro!",
+          title: "Erro",
           text: response.errors.join(", "),
         });
       }
@@ -76,10 +76,10 @@ export default function Generos() {
       FecharModal();
 
     } catch (error) {
-      console.error("Erro ao salvar gênero:", error);
+      console.error("Um erro ocorreu ao salvar o gênero:", error);
       Swal.fire({
         icon: "error",
-        title: "Erro!",
+        title: "Erro",
         text: "Um erro ocorreu ao salvar o gênero.",
       });
     }
@@ -90,8 +90,8 @@ export default function Generos() {
       title: `Deseja excluir o gênero "${nome}"?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sim, excluir",
-      cancelButtonText: "Cancelar"
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não"
     });
 
     if (result.isConfirmed) {
@@ -108,16 +108,16 @@ export default function Generos() {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Erro!",
+            title: "Erro",
             text: response.errors.join(", "),
           });
         }
       } catch (error) {
-        console.error("Erro ao deletar gênero:", error);
+        console.error("Um erro ocorreu ao excluir o gênero:", error);
         Swal.fire({
           icon: "error",
-          title: "Erro!",
-          text: "Ocorreu um erro ao deletar o gênero.",
+          title: "Erro",
+          text: "Um erro ocorreu ao excluir o gênero.",
         });
       }
     }
@@ -146,7 +146,7 @@ export default function Generos() {
               </TableRow>
             ) : generos.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={3}>Nenhum gênero encontrado.</TableCell>
+                <TableCell colSpan={3}>Nenhum gênero foi encontrado.</TableCell>
               </TableRow>
             ) : (
               generos.map((genero) => (

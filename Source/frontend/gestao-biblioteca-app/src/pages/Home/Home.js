@@ -18,18 +18,18 @@ export default function Home() {
     try {
       definirCarregamento(true);
 
-      const [resAutores, resGeneros, resLivros] = await Promise.all([
+      const [responseAutores, responseGeneros, responseLivros] = await Promise.all([
         listarAutores(),
         listarGeneros(),
         listarLivros()
       ]);
 
-      if (resAutores.success) definirTotalAutores(resAutores.data.length);
-      if (resGeneros.success) definirTotalGeneros(resGeneros.data.length);
-      if (resLivros.success) definirTotalLivros(resLivros.data.length);
+      if (responseAutores.success) definirTotalAutores(responseAutores.data.length);
+      if (responseGeneros.success) definirTotalGeneros(responseGeneros.data.length);
+      if (responseLivros.success) definirTotalLivros(responseLivros.data.length);
 
     } catch (error) {
-      console.error("Erro ao carregar contadores:", error);
+      console.error("Um erro ocorreu ao carregar os contadores:", error);
     } finally {
       definirCarregamento(false);
     }
@@ -67,8 +67,7 @@ export default function Home() {
               "&:hover": {
                 transform: "scale(1.05)"
               }
-            }}
-          >
+            }}>
             <CardActionArea onClick={() => navigate(card.route)}>
               <CardContent sx={{ textAlign: "center", py: 4 }}>
                 <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
