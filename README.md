@@ -86,7 +86,7 @@ Todos os padrões e princípios tiveram sua importância para compor o projeto d
 4. Após abertura, na camada "GestaoBiblioteca.Api", localize o arquivo de appsettings (appsettings.json) e altere a string de conexão com base nos parametros de Servidor, Usuário e Senha.
 5. Feito isso, compile o projeto através dos comandos Ctrl +Shift + B ou execute o mesmo para disponibilizar a API no ar.
 6. Na mesma pasta do projeto clonado, volte até a pasta /Source/frontend e abra a mesma usando o Visual Studio Code.
-7. Após abrir com o mesmo, abra um terminal e execute os comandos: npm run build e logo depois nmp start.
+7. Após abrir com o mesmo, abra um terminal e execute os comandos: "npm install", logo depois "npm run build" e por fim "nmp start".
 8. Feito isso, a api local estará sendo executada na rota: "https://localhost:7252", e o front end, estará sendo executado na rota "http://localhost:3000/home".
 9. Ao abrir a interface do front pela primeira vez, será mostrado um card com contador das entidades cadastradas no banco de dados. Na parte superior direito, conterá um menu com as opções conforme o desafio.
 10. Clique sobre cada menu (Autores, Gêneros, Livros) e execute as operações de CRUD conforme o desafio. Ao clicar sobre o menu "Início", o mesmo leva para a página inicial contendo os contadores das entidades.
