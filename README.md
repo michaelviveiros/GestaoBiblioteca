@@ -25,13 +25,18 @@ Todos os padrões e princípios tiveram sua importância para compor o projeto d
 * <b>KISS:</b> (Keep It Simple, Stupid) Esse é um pattern bastante importante pois traz a simplicidade para o nosso dia dia, a complexidade deve estar somente onde é necessária e nada alem disso. <br/>
   Isso vai além dos códigos em si, na nossa análise e todo processo que engloba o desenvolvimento de software.
   Resolver os problemas de forma simples nós traz eficiência e rápido entendimento daquele contexto por outros profissionais da equipe. <br/>
+
   Um artigo que detalha mais sobre o pattern: <a href="https://www.interaction-design.org/literature/article/kiss-keep-it-simple-stupid-a-design-principle" target="_blank">KISS</a> 
   
 * <b>DRY:</b> (Don't Repeat Yourself) É algo que já esta intricico e que comumente já fazemos no dia dia, e está aqui pra reforçar essa prática.
   Seu proósito é basicamente evitar repetição de código em seu projeto, abstraindo, extendendo, unificando alguns desses pontos.
   Isso denpenderá diretamente em que contexto ele se encontra, a forma como a unificação acontecerá. <br/>
-
+  
   Um artigo que detalha mais sobre o pattern: <a href="https://medium.com/@rafaelsouzaim/n%C3%A3o-se-repita-dry-dont-repeat-yourself-40da33289bcf">DRY</a> 
+
+* <b>Response Pattern:</b> É utilizado para adotar um padrão consistente de respostas através de uma entidade ResultResponse<T>. Esse padrão padroniza retornos de sucesso, falha, mensagens, códigos HTTP e objetos de dados visando a padronização dos controllers e clareza nas respostas. A entidade é adaptável conforme a estrutura e validação da API.<br/>
+
+  Um artigo que detalha mais sobre o pattern: <a href="https://medium.com/@elhelw258/unified-api-response-in-net-web-api-bc4bf62c638e">ResultResponse<T></a> 
   
 * <b>AAA:</b> (Arrange, Act e Assert) Esse pattern foi feito para suportar a criação dos nossos testes de unidade. Sua utilização e benefício se da pela organização dos contextos de testes, sendo separando por três conceitos básicos, que são respectivamente:<br/>
 	* <b>Arrange:</b> Tudo que eu preciso instanciar para criar o meu teste.<br/>
@@ -64,7 +69,7 @@ Todos os padrões e princípios tiveram sua importância para compor o projeto d
   Por fim, a camada de Tests é onde realizamos todos os cenários de testes do projeto e suas funcionalidades em si, através de testes de unidade usando a biblioteca xUnit.
   <br/><br/>
 
-  # 📝 Instruções Para Testes #
+# 📝 Instruções Para Testes #
 1. Clone o repositório para uma pasta específica do seu computador
 2. Abra a pasta do projeto clonada e execute o script contido dentro do diretório /Documents/Scripts Banco Dados/ CriacaoPreparoBancoTabelas.sql, em um banco SQL Server.
 3. Dentro da pasta do projeto clonado, navegue até /Source/backend e abra o aquivo de solução "GestaoBiblioteca.sln" pelo Visual Studio 2022 ou anterior.
