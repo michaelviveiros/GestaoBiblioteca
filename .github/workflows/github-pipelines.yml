@@ -1,0 +1,64 @@
+name: Build and Test GestaoBiblioteca
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+
+jobs:
+  build-develop:
+    if: github.ref == 'refs/heads/develop'
+    name: 🔧 Build and Test (develop)
+    runs-on: windows-2022
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup .NET SDK 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: 📦 Restore dependencies
+        run: dotnet restore ./Source/backend/GestaoBiblioteca.sln
+
+      - name: ⚙️ Build libs and tests (develop branch)
+        run: |
+          dotnet build ./Source/backend/GestaoBiblioteca.Core/GestaoBiblioteca.Core.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Helpers/GestaoBiblioteca.Helpers.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Infrastructure.SqlServer/GestaoBiblioteca.Infrastructure.SqlServer.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Service/GestaoBiblioteca.Service.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Tests/GestaoBiblioteca.Tests.csproj --configuration Debug --no-restore
+
+      - name: 🧪 Run unit tests
+        run: dotnet test ./Source/backend/GestaoBiblioteca.Tests/GestaoBiblioteca.Tests.csproj --no-build --configuration Debug
+
+  build-main:
+    if: github.ref == 'refs/heads/main'
+    name: 🚀 Build and Test (main)
+    runs-on: windows-2022
+
+    steps:
+      - name: ⬇️ Checkout code
+        uses: actions/checkout@v3
+
+      - name: 🧰 Setup .NET SDK 8.0
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: 📦 Restore dependencies
+        run: dotnet restore ./Source/backend/GestaoBiblioteca.sln
+
+      - name: 🛠️ Build libraries and test project (master branch)
+        run: |
+          dotnet build ./Source/backend/GestaoBiblioteca.Core/GestaoBiblioteca.Core.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Helpers/GestaoBiblioteca.Helpers.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Infrastructure.SqlServer/GestaoBiblioteca.Infrastructure.SqlServer.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Service/GestaoBiblioteca.Service.csproj --configuration Debug --no-restore
+          dotnet build ./Source/backend/GestaoBiblioteca.Tests/GestaoBiblioteca.Tests.csproj --configuration Debug --no-restore
+
+      - name: 🧪 Run unit tests
+        run: dotnet test ./Source/backend/GestaoBiblioteca.Tests/GestaoBiblioteca.Tests.csproj --no-build --configuration Debug
