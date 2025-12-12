@@ -2,9 +2,10 @@
 API criada através de um desafio proposto pela Siemens
 
 # 📋 Tecnologias Utilizadas #
-Sobre o projeto, o mesmo foi arquitetado visanso boas praticas aprendias ao longo da minha trajetória profissional.
+Sobre o projeto, o mesmo foi estruturado e arquitetado visando boas praticas aprendias ao longo da minha trajetória profissional como SOLID, DDD, POO, Clean Code e Designs Patterns.
 
-* Padrões da Clean Architecture
+## 🖥️ Backend
+* Padrões da Clean Architecture (adaptada com DDD)
 * ASP.NET Core Web Api 8
 * Entity Framework Core 8
 * Swagger
@@ -12,12 +13,21 @@ Sobre o projeto, o mesmo foi arquitetado visanso boas praticas aprendias ao long
 * AutoMapper
 * XUnit e Moq para testes unitários
 
+## 💻 Frontend
+* React 18
+* React Router DOM
+* Axios para consumo da API
+* Hooks (useState, useEffect, custom hooks)
+* Componentização e reutilização de componentes
+* Context API (caso tenha usado)  
+* Material UI
+
 # 📑 Padrões e Princípios Utilizados #
 
 Todos os padrões e princípios tiveram sua importância para compor o projeto de fácil manutenção e implementação de novas features, segregando suas responsabilidades e deixando o projeto com alta coesão e um aclopamento baixo.
 
 * <b>SOLID:</b> É o principal de todos, está relacionado diretamente a programação orientada a objeto.
-  Ele nos ajuda a segregar nossas resposnabilidades do projeto, criar novas features coesas extendendo-as quando for necessário, definir corretamente as heranças entre os objetos, definir os contratos (Interfaces) específicos para cada classe, e desaclopamento entre as camadas e objetos.
+  Ele nos ajuda a segregar nossas responsabilidades do projeto, criar novas features coesas extendendo-as quando for necessário, definir corretamente as heranças entre os objetos, definir os contratos (Interfaces) específicos para cada classe, e desaclopamento entre as camadas e objetos.
 
   Um repositório que detalha mais sobre os princípios SOLID: <a href="https://github.com/EduardoPires/SOLID">SOLID</a>
 
@@ -28,9 +38,9 @@ Todos os padrões e princípios tiveram sua importância para compor o projeto d
 
   Um artigo que detalha mais sobre o pattern: <a href="https://www.interaction-design.org/literature/article/kiss-keep-it-simple-stupid-a-design-principle" target="_blank">KISS</a> 
   
-* <b>DRY:</b> (Don't Repeat Yourself) É algo que já esta intricico e que comumente já fazemos no dia dia, e está aqui pra reforçar essa prática.
-  Seu proósito é basicamente evitar repetição de código em seu projeto, abstraindo, extendendo, unificando alguns desses pontos.
-  Isso denpenderá diretamente em que contexto ele se encontra, a forma como a unificação acontecerá. <br/>
+* <b>DRY:</b> (Don't Repeat Yourself) É algo que já esta intrínseco e que comumente já fazemos no dia dia, e está aqui pra reforçar essa prática.
+  Seu propósito é basicamente evitar repetição de código em seu projeto, abstraindo, extendendo, unificando alguns desses pontos.
+  Isso dependerá diretamente em que contexto ele se encontra, a forma como a unificação acontecerá. <br/>
   
   Um artigo que detalha mais sobre o pattern: <a href="https://medium.com/@rafaelsouzaim/n%C3%A3o-se-repita-dry-dont-repeat-yourself-40da33289bcf">DRY</a> 
 
@@ -49,18 +59,18 @@ Todos os padrões e princípios tiveram sua importância para compor o projeto d
 # 📝 Camadas da Aplicação #
 
 * ### GestaoBiblioteca.Api:
-  Essa camada é basicamente a API, nela contém toda a lógica da aplicação em si, é basicamente a porta de entrada do Core. A mesma possui dependência das camadas de Infrastructure, Services, Core e Helpers. <br/>
+  Essa camada é basicamente a API, nela contém as portas de entrada da aplicação em si, é basicamente a porta de entrada do Core. A mesma possui dependência das camadas de Infrastructure, Services, Core e Helpers. <br/>
   A camada em si define classes de configurações de bibliotecas, acessos de serviços externos, como demais configurações que são importantes para o funcionamento correto da mesma.
 
 * ### GestaoBiblioteca.Core:
-  Essa camada contém toda a lógica de negócios da API, modelos de domínio, serviços, entidades, interfaces e abstrações que definem o comportamento do sistema atgravés das depedências das outras camadas que a mesma possui referência.
+  Essa camada contém toda a lógica de negócios da API, modelos de domínio, serviços, entidades, interfaces e abstrações que definem o comportamento do sistema através das dependências das outras camadas que a mesma possui referência.
   
 * ### GestaoBiblioteca.Helpers:
   Essa camada contém classes de utilitários, classes de ajuda, métodos de extensões que não se enquadram diretamente na lógica de negócios, mas que oferecem suporte para várias operações na aplicação. <br/>
   Essa camada pode ser usada por outras camadas da API para evitar a repetição de código e fornecer funcionalidades reutilizáveis para a mesma.
   
 * ### GestaoBiblioteca.Infrastructure.SqlServer:
-  Essa camada possio as diretrizes e configurações para acesso ao banco de dados utilizado na API. Em si, contém classes e interfaces que usamos para acessar recursos externos, como sistemas de arquivos, serviços da Web, banco de dados, integrações, e assim por diante.
+  Essa camada possui as diretrizes e configurações para acesso ao banco de dados utilizado na API. Em si, contém classes e interfaces que usamos para acessar recursos externos, como sistemas de arquivos, serviços da Web, banco de dados, integrações, e assim por diante.
 
 * ### GestaoBiblioteca.Services:
   Essa camada é basicamente a nossa camada de negócio, através dela implementamos todas as classes e interfaces para posteriores acessos aos repositórios de dados.
