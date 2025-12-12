@@ -12,7 +12,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowReactApp",
         policy =>
         {
-            policy.WithOrigins("http://localhost:3000") // origem do seu React
+            policy.WithOrigins("http://localhost:3000") //Origem do front do react
                   .AllowAnyHeader()
                   .AllowAnyMethod();
         });
@@ -37,6 +37,7 @@ builder.Services.Configure<RequestLocalizationOptions>(options =>
 #endregion
 
 builder.Services.AddControllers();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

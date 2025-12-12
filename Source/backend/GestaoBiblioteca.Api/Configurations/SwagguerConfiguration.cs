@@ -14,7 +14,7 @@ namespace GestaoBiblioteca.Api.Configurations
                 {
                     Title = "Gestão de Bibliotecas API",
                     Version = "v1",
-                    Description = "",
+                    Description = "API criada através de um desafio proposto pela Siemens.",
                     TermsOfService = new Uri("https://www.siemens.com/br/pt.html"),
                     Contact = new OpenApiContact
                     {
