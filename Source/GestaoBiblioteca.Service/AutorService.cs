@@ -33,7 +33,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autor = await _context.Autores.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var autor = await _context.Autores.Where(x => x.COD_TAUTORES == id).FirstOrDefaultAsync();
 
                 if (autor == null)
                     return null;
@@ -61,7 +61,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autor = _context.Autores.Where(x => x.Id == id).FirstOrDefault();
+                var autor = _context.Autores.Where(x => x.COD_TAUTORES == id).FirstOrDefault();
 
                 if (autor == null)
                     return null;
@@ -95,7 +95,7 @@ namespace GestaoBiblioteca.Service
 
                 foreach (var item in entidades)
                 {
-                    var livrosAutor = livros.Where(x => x.IdAutor == item.Id).ToList();
+                    var livrosAutor = livros.Where(x => x.COD_TAUTORES == item.Id).ToList();
 
                     if (!livrosAutor.Any())
                         continue;
@@ -123,7 +123,7 @@ namespace GestaoBiblioteca.Service
             {
                 var autor = _mapper.Map<TAutores>(entity);
 
-                var registro = await _context.Autores.FirstOrDefaultAsync(u => u.Id == entity.Id);
+                var registro = await _context.Autores.FirstOrDefaultAsync(u => u.COD_TAUTORES == entity.Id);
 
                 //Atualiza as propriedades
                 if (registro != null)
@@ -149,12 +149,12 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autor = await _context.Autores.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var autor = await _context.Autores.Where(x => x.COD_TAUTORES == id).FirstOrDefaultAsync();
 
                 if (autor == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
 
-                autor.Ativo = false;
+                autor.ATIVO = false;
 
                 _context.Autores.Update(autor);
                 return await _context.SaveChangesAsync() > 0 ? true : false;
@@ -177,7 +177,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autor = await _context.Autores.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var autor = await _context.Autores.Where(x => x.COD_TAUTORES == id).FirstOrDefaultAsync();
 
                 if (autor == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
@@ -227,7 +227,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autores = await _context.Autores.AsNoTracking().ToListAsync();
+                var autores = await _context.Autores.Where(x => x.ATIVO == true).AsNoTracking().ToListAsync();
 
                 var autoresDTO = _mapper.Map<List<AutorDTO>>(autores);
 
@@ -251,7 +251,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var autores = _context.Autores.AsNoTracking().ToList();
+                var autores = _context.Autores.Where(x => x.ATIVO == true).AsNoTracking().ToList();
 
                 var autoresDTO = _mapper.Map<List<AutorDTO>>(autores);
 

@@ -15,23 +15,6 @@ namespace GestaoBiblioteca.Infrastructure.SqlServer
 
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<TLivros>()
-                .HasOne(l => l.Autor)
-                .WithMany(a => a.Livros)
-                .HasForeignKey(l => l.IdAutor)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            modelBuilder.Entity<TLivros>()
-                .HasOne(l => l.Genero)
-                .WithMany(g => g.Livros)
-                .HasForeignKey(l => l.IdGenero)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            base.OnModelCreating(modelBuilder);
-        }
-
         public DbSet<TLivros> Livros { get; set; }
 
         public DbSet<TAutores> Autores { get; set; }

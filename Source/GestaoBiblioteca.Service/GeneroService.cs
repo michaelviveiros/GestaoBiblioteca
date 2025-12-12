@@ -33,7 +33,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var genero = await _context.Generos.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var genero = await _context.Generos.Where(x => x.COD_TGENEROS == id).FirstOrDefaultAsync();
 
                 if (genero == null)
                     return null;
@@ -60,7 +60,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var genero = _context.Generos.Where(x => x.Id == id).FirstOrDefault();
+                var genero = _context.Generos.Where(x => x.COD_TGENEROS == id).FirstOrDefault();
 
                 if (genero == null)
                     return null;
@@ -94,7 +94,7 @@ namespace GestaoBiblioteca.Service
 
                 foreach (var item in entidades)
                 {
-                    var livrosGenero = livros.Where(x => x.IdGenero == item.Id).ToList();
+                    var livrosGenero = livros.Where(x => x.COD_TGENEROS == item.Id).ToList();
 
                     if (!livrosGenero.Any())
                         continue;
@@ -122,7 +122,7 @@ namespace GestaoBiblioteca.Service
             {
                 var autor = _mapper.Map<GeneroDTO>(entity);
 
-                var registro = await _context.Generos.FirstOrDefaultAsync(u => u.Id == entity.Id);
+                var registro = await _context.Generos.FirstOrDefaultAsync(u => u.COD_TGENEROS == entity.Id);
 
                 //Atualiza as propriedades
                 if (registro != null)
@@ -148,12 +148,12 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var genero = await _context.Generos.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var genero = await _context.Generos.Where(x => x.COD_TGENEROS == id).FirstOrDefaultAsync();
 
                 if (genero == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
 
-                genero.Ativo = false;
+                genero.ATIVO = false;
 
                 _context.Generos.Update(genero);
                 return await _context.SaveChangesAsync() > 0 ? true : false;
@@ -176,7 +176,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var genero = await _context.Generos.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var genero = await _context.Generos.Where(x => x.COD_TGENEROS == id).FirstOrDefaultAsync();
 
                 if (genero == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
@@ -225,7 +225,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var generos = await _context.Autores.AsNoTracking().ToListAsync();
+                var generos = await _context.Generos.Where(x => x.ATIVO == true).AsNoTracking().ToListAsync();
 
                 var generosDTO = _mapper.Map<List<GeneroDTO>>(generos);
 
@@ -249,7 +249,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var generos = _context.Autores.AsNoTracking().ToList();
+                var generos = _context.Generos.Where(x => x.ATIVO == true).AsNoTracking().ToList();
 
                 var generosDTO = _mapper.Map<List<GeneroDTO>>(generos);
 

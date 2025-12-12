@@ -1,27 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace GestaoBiblioteca.Core.Entities
 {
+    [Table("TLIVROS")]
     public class TLivros
     {
-        public int Id { get; set; }
+        [Key]
+        public int COD_TLIVROS { get; set; }
 
-        public string Nome { get; set; }
+        public string NOME { get; set; }
 
-        public bool Ativo { get; set; }
+        public bool ATIVO { get; set; }
 
+        public int COD_TAUTORES { get; set; }
 
-        //Chaves estrangeiras
-        public int IdAutor { get; set; }
-
-        public int IdGenero { get; set; }
-
-        public TAutores Autor { get; set; }
-
-        public TGeneros Genero { get; set; }
+        public int COD_TGENEROS { get; set; }
     }
 }
