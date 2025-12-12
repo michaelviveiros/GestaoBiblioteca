@@ -17,9 +17,7 @@ Sobre o projeto, o mesmo foi estruturado e arquitetado visando boas praticas apr
 * React 18
 * React Router DOM
 * Axios para consumo da API
-* Hooks (useState, useEffect, custom hooks)
-* Componentização e reutilização de componentes
-* Context API (caso tenha usado)  
+* Hooks (useState, useEffect) 
 * Material UI
 
 # 📑 Padrões e Princípios Utilizados #
