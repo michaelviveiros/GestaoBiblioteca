@@ -15,11 +15,38 @@ namespace GestaoBiblioteca.Core.Mappers.ProfilesMappers
     {
         public MappingProfile()
         {
-            CreateMap<TAutores, AutorDTO>().ReverseMap();
+            CreateMap<TAutores, AutorDTO>()
+                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.COD_TAUTORES))
+                 .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.NOME))
+                 .ForMember(dest => dest.Ativo, opt => opt.MapFrom(src => src.ATIVO))
+                 .ReverseMap()
+                 .ForMember(dest => dest.COD_TAUTORES, opt => opt.MapFrom(src => src.Id))
+                 .ForMember(dest => dest.NOME, opt => opt.MapFrom(src => src.Nome))
+                 .ForMember(dest => dest.ATIVO, opt => opt.MapFrom(src => src.Ativo));
 
-            CreateMap<TGeneros, GeneroDTO>().ReverseMap();
+            CreateMap<TGeneros, GeneroDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.COD_TGENEROS))
+                .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.NOME))
+                .ForMember(dest => dest.Ativo, opt => opt.MapFrom(src => src.ATIVO))
+                .ReverseMap()
+                .ForMember(dest => dest.COD_TGENEROS, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.NOME, opt => opt.MapFrom(src => src.Nome))
+                .ForMember(dest => dest.ATIVO, opt => opt.MapFrom(src => src.Ativo));
 
-            CreateMap<TLivros, LivroDTO>().ReverseMap();
+            CreateMap<TLivros, LivroDTO>()
+                .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.COD_TLIVROS))
+                .ForMember(dest => dest.Nome, opt => opt.MapFrom(src => src.NOME))
+                .ForMember(dest => dest.Ativo, opt => opt.MapFrom(src => src.ATIVO))
+                .ForMember(dest => dest.IdAutor, opt => opt.MapFrom(src => src.COD_TAUTORES))
+                .ForMember(dest => dest.IdGenero, opt => opt.MapFrom(src => src.COD_TGENEROS))
+                .ReverseMap()
+                .ForMember(dest => dest.COD_TLIVROS, opt => opt.MapFrom(src => src.Id))
+                .ForMember(dest => dest.NOME, opt => opt.MapFrom(src => src.Nome))
+                .ForMember(dest => dest.ATIVO, opt => opt.MapFrom(src => src.Ativo))
+                .ForMember(dest => dest.COD_TAUTORES, opt => opt.MapFrom(src => src.IdAutor))
+                .ForMember(dest => dest.COD_TGENEROS, opt => opt.MapFrom(src => src.IdGenero));
+
+
         }
     }
 }

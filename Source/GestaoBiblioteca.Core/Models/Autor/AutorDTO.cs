@@ -12,16 +12,12 @@ namespace GestaoBiblioteca.Core.Models.Autor
 {
     public class AutorDTO
     {
-        [JsonIgnore]
         public int Id { get; set; }
 
-        [Required]
         public string Nome { get; set; }
 
-        [Required]
         public bool Ativo { get; set; }
 
-        [JsonIgnore]
         public ICollection<LivroDTO> Livros { get; set; }
     }
 }

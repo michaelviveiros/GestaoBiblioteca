@@ -64,9 +64,9 @@ namespace GestaoBiblioteca.Api.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
+                if (string.IsNullOrWhiteSpace(entity.Nome))
                     return BadRequest(new ResultResponse<string>(
-                        data: "Todos os campos do Autor são de preenchimento obrigatório."));
+                        data: "O nome do autor é um campo obrigatório."));
 
                 var resultado = await _autorService.Incluir(entity);
 

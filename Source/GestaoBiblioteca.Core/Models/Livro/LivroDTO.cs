@@ -13,25 +13,18 @@ namespace GestaoBiblioteca.Core.Models.Livro
 {
     public class LivroDTO
     {
-        [JsonIgnore]
         public int Id { get; set; }
 
-        [Required]
         public string Nome { get; set; }
 
-        [Required]
         public int IdAutor { get; set; }
 
-        [Required]
         public int IdGenero { get; set; }
 
-        [Required]
         public bool Ativo { get; set; }
 
-        [Required]
         public AutorDTO Autor { get; set; }
 
-        [Required]
         public GeneroDTO Genero { get; set; }
     }
 }

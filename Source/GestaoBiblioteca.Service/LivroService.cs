@@ -34,7 +34,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livros = await _context.Livros.AsNoTracking().Where(x => x.IdAutor == idAutor).ToListAsync();
+                var livros = await _context.Livros.AsNoTracking().Where(x => x.COD_TAUTORES == idAutor).ToListAsync();
 
                 if (!livros.Any())
                     throw new KeyNotFoundException($"Não foram encontrados registros para o autor sob/código: {idAutor}.");
@@ -66,8 +66,8 @@ namespace GestaoBiblioteca.Service
                 if (entidade == null)
                     throw new KeyNotFoundException($"É necessário informar um registro para posterior associação de autore e gênero.");
 
-                var genero = _context.Generos.FirstOrDefault(x => x.Id == entidade.IdGenero);
-                var autor = _context.Autores.FirstOrDefault(x => x.Id == entidade.IdAutor);
+                var genero = _context.Generos.FirstOrDefault(x => x.COD_TGENEROS == entidade.IdGenero);
+                var autor = _context.Autores.FirstOrDefault(x => x.COD_TAUTORES == entidade.IdAutor);
 
                 if (genero != null)
                 {
@@ -138,7 +138,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var generos = await _context.Livros.AsNoTracking().Where(x => x.IdGenero == idGenero).ToListAsync();
+                var generos = await _context.Livros.AsNoTracking().Where(x => x.COD_TGENEROS == idGenero).ToListAsync();
 
                 if (!generos.Any())
                     throw new KeyNotFoundException($"Não foram encontrados registros para o gênero sob/código: {idGenero}.");
@@ -165,7 +165,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livro = await _context.Livros.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var livro = await _context.Livros.Where(x => x.COD_TLIVROS == id).FirstOrDefaultAsync();
 
                 if (livro == null)
                     return null;
@@ -194,7 +194,7 @@ namespace GestaoBiblioteca.Service
             {
                 var livro = _mapper.Map<TLivros>(entity);
 
-                var registro = await _context.Livros.FirstOrDefaultAsync(u => u.Id == entity.Id);
+                var registro = await _context.Livros.FirstOrDefaultAsync(u => u.COD_TLIVROS == entity.Id);
 
                 //Atualiza as propriedades
                 if (registro != null)
@@ -220,12 +220,12 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livro = await _context.Livros.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var livro = await _context.Livros.Where(x => x.COD_TLIVROS == id).FirstOrDefaultAsync();
 
                 if (livro == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
 
-                livro.Ativo = false;
+                livro.ATIVO = false;
 
                 _context.Livros.Update(livro);
                 return await _context.SaveChangesAsync() > 0 ? true : false;
@@ -248,7 +248,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livro = await _context.Livros.Where(x => x.Id == id).FirstOrDefaultAsync();
+                var livro = await _context.Livros.Where(x => x.COD_TLIVROS == id).FirstOrDefaultAsync();
 
                 if (livro == null)
                     throw new KeyNotFoundException($"Não foi encontrado registro sob/código {id}.");
@@ -297,9 +297,11 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livros = await _context.Livros.AsNoTracking().ToListAsync();
+                var livros = await _context.Livros.Where(x => x.ATIVO == true).AsNoTracking().ToListAsync();
 
                 var livrosDTO = _mapper.Map<List<LivroDTO>>(livros);
+
+                CorrelacionarAutorGenero(livrosDTO);
 
                 return livrosDTO.OrderBy(x => x.Nome).ToList();
             }
@@ -321,7 +323,7 @@ namespace GestaoBiblioteca.Service
         {
             try
             {
-                var livros = _context.Livros.AsNoTracking().ToList();
+                var livros = _context.Livros.Where(x => x.ATIVO == true).AsNoTracking().ToList();
 
                 var livrosDTO = _mapper.Map<List<LivroDTO>>(livros);
 

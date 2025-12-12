@@ -12,16 +12,12 @@ namespace GestaoBiblioteca.Core.Models.Genero
 {
     public class GeneroDTO
     {
-        [JsonIgnore]
         public int Id { get; set; }
 
-        [Required]
         public string Nome { get; set; }
 
-        [Required]
         public bool Ativo { get; set; } = true;
 
-        [JsonIgnore]
         public ICollection<LivroDTO> Livros { get; set; }
     }
 }

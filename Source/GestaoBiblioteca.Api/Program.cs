@@ -7,6 +7,18 @@ using Microsoft.Extensions.FileProviders;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReactApp",
+        policy =>
+        {
+            policy.WithOrigins("http://localhost:3000") // origem do seu React
+                  .AllowAnyHeader()
+                  .AllowAnyMethod();
+        });
+});
+
+
 #region Configuração dos mapeamentos do AutoMapper
 builder.Services.AddAutoMapper(typeof(MappingProfile));
 #endregion
@@ -44,6 +56,8 @@ builder.Services.AddScoped<ILivroService, LivroService>();
 
 
 var app = builder.Build();
+
+app.UseCors("AllowReactApp");
 
 #region Aplica a configuração de localização para Português do Brasil
 var opcoesLocalizacao = new RequestLocalizationOptions()
