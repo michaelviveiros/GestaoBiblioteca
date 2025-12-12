@@ -11,14 +11,13 @@ function App() {
   return (
     <Router>
       <Box sx={{ flexGrow: 1 }}>
-        {/* Menu superior */}
+
         <AppBar position="static">
           <Toolbar>
             <Typography variant="h6" sx={{ flexGrow: 1 }}>
               Gestão de Biblioteca
             </Typography>
 
-            {/* Menu direito */}
             <Button color="inherit" component={Link} to="/home">Início</Button>
             <Button color="inherit" component={Link} to="/autores">Autores</Button>
             <Button color="inherit" component={Link} to="/generos">Gêneros</Button>
@@ -26,13 +25,10 @@ function App() {
           </Toolbar>
         </AppBar>
 
-        {/* Conteúdo principal */}
         <Box sx={{ padding: 3 }}>
           <Routes>
-            {/* Home em branco */}
             <Route path="/" element={<Home />} />
 
-            {/* Página de Autores com CRUD */}
             <Route path="/home" element={<Home />} />
             <Route path="/autores" element={<Autores />} />
             <Route path="/generos" element={<Generos />} />

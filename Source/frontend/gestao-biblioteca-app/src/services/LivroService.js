@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Cria uma instância do axios apontando para a base da API
 const api = axios.create({
   baseURL: "https://localhost:7252/Livro"
 });

@@ -115,7 +115,7 @@ export default function Livros() {
       } else {
         Swal.fire({
           icon: "error",
-          title: "Erro!",
+          title: "Erro",
           text: response.errors.join(", ")
         });
       }
@@ -124,11 +124,11 @@ export default function Livros() {
       FecharModal();
 
     } catch (error) {
-      console.error("Erro ao salvar livro:", error);
+      console.error("Um erro ocorreu ao salvar o livro:", error);
       Swal.fire({
         icon: "error",
-        title: "Erro!",
-        text: "Ocorreu um erro ao salvar o livro."
+        title: "Erro",
+        text: "Um erro ocorreu ao salvar o livro."
       });
     }
   };
@@ -138,8 +138,8 @@ export default function Livros() {
       title: `Deseja realmente excluir o livro "${nome}"?`,
       icon: "warning",
       showCancelButton: true,
-      confirmButtonText: "Sim, excluir",
-      cancelButtonText: "Cancelar"
+      confirmButtonText: "Sim",
+      cancelButtonText: "Não"
     });
 
     if (result.isConfirmed) {
@@ -157,17 +157,17 @@ export default function Livros() {
         } else {
           Swal.fire({
             icon: "error",
-            title: "Erro!",
+            title: "Erro",
             text: response.errors.join(", ")
           });
         }
 
       } catch (error) {
-        console.error("Erro ao deletar livro:", error);
+        console.error("Um erro ocorreu ao deletar o livro:", error);
         Swal.fire({
           icon: "error",
-          title: "Erro!",
-          text: "Ocorreu um erro ao deletar o livro."
+          title: "Erro",
+          text: "Um erro ocorreu ao deletar o livro."
         });
       }
     }
@@ -198,7 +198,7 @@ export default function Livros() {
               </TableRow>
             ) : livros.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={5}>Nenhum livro encontrado.</TableCell>
+                <TableCell colSpan={5}>Nenhum livro foi encontrado.</TableCell>
               </TableRow>
             ) : (
               livros.map((livro) => (
@@ -219,7 +219,6 @@ export default function Livros() {
         </Table>
       </TableContainer>
 
-      {/* Modal */}
       <Dialog open={openModal} onClose={FecharModal}>
         <DialogTitle>{modalMode === "criar" ? "Criar Livro" : "Editar Livro"}</DialogTitle>
 
@@ -233,7 +232,6 @@ export default function Livros() {
             margin="dense"
           />
 
-          {/* Select Autor */}
           <FormControl fullWidth sx={{ marginTop: 2 }}>
             <InputLabel>Autor</InputLabel>
             <Select
@@ -247,7 +245,6 @@ export default function Livros() {
             </Select>
           </FormControl>
 
-          {/* Select Genero */}
           <FormControl fullWidth sx={{ marginTop: 2 }}>
             <InputLabel>Gênero</InputLabel>
             <Select
@@ -261,7 +258,6 @@ export default function Livros() {
             </Select>
           </FormControl>
 
-          {/* Ativo */}
           <FormControlLabel
             control={
               <Switch
