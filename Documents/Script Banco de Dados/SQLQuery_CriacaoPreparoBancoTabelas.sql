@@ -1,7 +1,7 @@
 CREATE DATABASE GESTAO_BIBLIOTECAS;
 GO
 
-USE GESTAO_BIBLIOTECA;
+USE GESTAO_BIBLIOTECAS;
 GO
 
 CREATE TABLE [dbo].[TAUTORES]
@@ -41,28 +41,28 @@ CREATE TABLE dbo.TLIVROS
 );
 GO
 
-USE GESTAO_BIBLIOTECA;
+USE GESTAO_BIBLIOTECAS;
 GO
 
--- INSER«√O DOS AUTORES
+-- INSER√á√ÉO DOS AUTORES
 INSERT INTO dbo.TAUTORES (NOME, ATIVO) VALUES
 ('Machado de Assis', 1),
 ('Clarice Lispector', 1),
 ('J.K. Rowling', 1);
 
--- INSER«√O DOS GENEROS
+-- INSER√á√ÉO DOS GENEROS
 INSERT INTO dbo.TGENEROS (NOME, ATIVO) VALUES
 ('Romance', 1),
-('FicÁ„o', 1),
+('Fic√ß√£o', 1),
 ('Biografia', 1);
 
--- INSER«√O DOS LIVROS
+-- INSER√á√ÉO DOS LIVROS
 INSERT INTO dbo.TLIVROS (NOME, COD_TAUTORES, COD_TGENEROS, ATIVO) VALUES
 ('Dom Casmurro', 1, 1, 1),
 ('A Hora da Estrela', 2, 1, 1),
-('Harry Potter e a Pedra Filosofal', 4, 3, 1),
-('Harry Potter e a Camara Seecreta', 4, 3, 1),
-('Harry Potter e o C·lice de Fogo', 4, 3, 1);
+('Harry Potter e a Pedra Filosofal', 3, 3, 1),
+('Harry Potter e a Camara Seecreta', 3, 3, 1),
+('Harry Potter e o C√°lice de Fogo', 3, 3, 1);
 
 
 SELECT * FROM TAUTORES AS AUT
